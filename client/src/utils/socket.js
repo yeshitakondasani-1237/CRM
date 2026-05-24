@@ -1,7 +1,9 @@
 import { io } from 'socket.io-client';
 
-// Since the dev server is proxied, we can point to window.location.origin or path
-const socket = io(window.location.origin, {
+// Use production backend URL or fallback to the current origin (dev server proxy)
+const API_URL = import.meta.env.VITE_API_URL || window.location.origin;
+
+const socket = io(API_URL, {
   autoConnect: false,
 });
 

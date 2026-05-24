@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+// Get backend URL from environment variables for production, or fallback to relative proxy for local development
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: API_URL ? `${API_URL}/api` : '/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -22,16 +25,14 @@ api.interceptors.request.use(
 );
 
 // Response Interceptor: Handle Token Expiration (401 Unauthorized)
-api.interceptors.response.use(
-  (response) => response,
+api.interceptors.request.use(
+  (config) => config,
   (error) => {
     if (error.response && error.response.status === 401) {
       // Clear credentials
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       
-      // We can also trigger a window redirect to login or let the react app handle the state reset.
-      // Redirect to login if not already there
       if (!window.location.pathname.endsWith('/login')) {
         window.location.href = '/login';
       }
