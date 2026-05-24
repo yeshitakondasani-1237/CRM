@@ -1,0 +1,53 @@
+:root {
+  font-family: 'Outfit', 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Kanban Board scrollbar constraints */
+.kanban-column-scroll {
+  max-height: calc(100vh - 280px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
